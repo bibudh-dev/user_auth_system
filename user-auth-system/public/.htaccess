@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # 🚀 Ensure React handles frontend routes
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.html [QSA,L]
+
+    # 🚀 Ensure API calls go to CodeIgniter, not React
+    RewriteCond %{REQUEST_URI} ^/(register_user|login_user|public_url)$
+    RewriteRule ^ index.php [L]
+</IfModule>
